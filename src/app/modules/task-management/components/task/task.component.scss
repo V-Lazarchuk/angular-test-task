@@ -5,10 +5,12 @@
     background-color: azure;
     user-select: none;
     cursor: pointer;
+
     &__title {
         font-size: 18px;
         font-weight: bold;
     }
+
     &__text {
         margin-top: 7px;
     }

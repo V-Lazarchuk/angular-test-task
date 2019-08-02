@@ -11,6 +11,7 @@ import { Task } from '../../models';
 })
 export class DashboardComponent implements OnInit {
     public taskItems: { [name: string]: Task[] } = {};
+    public showCreateCategoryForm: boolean = false;
 
     constructor(private tasksService: TasksService) {
     }
@@ -21,7 +22,6 @@ export class DashboardComponent implements OnInit {
         categories.forEach(category => {
             this.taskItems[category.title] = tasks.filter(task => task.categoryId === category.id);
         });
-        console.log(this.taskItems);
     }
 
     public drop(event: CdkDragDrop<Task[]>) {
@@ -33,6 +33,11 @@ export class DashboardComponent implements OnInit {
                 event.previousIndex,
                 event.currentIndex);
         }
+    }
+
+    public addNewCategory(title: string): void {
+        this.showCreateCategoryForm = false;
+        this.taskItems[title] = [];
     }
 
     /**

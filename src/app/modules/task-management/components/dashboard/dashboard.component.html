@@ -16,4 +16,19 @@
             </app-task>
         </div>
     </div>
+    <div class="category"
+         [ngClass]="{'transparent': !showCreateCategoryForm}"
+    >
+        <app-create-category-form *ngIf="showCreateCategoryForm; else plusButton"
+                                  (cancel)="showCreateCategoryForm = false"
+                                  (create)="addNewCategory($event)"
+        ></app-create-category-form>
+
+        <ng-template #plusButton>
+            <button class="addButton"
+            (click)="showCreateCategoryForm = true">
+                Add category
+            </button>
+        </ng-template>
+    </div>
 </section>

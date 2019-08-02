@@ -19,7 +19,7 @@ export const tasks: Task[] = [
     {
         categoryId: 2,
         id: 1,
-        title: 'Create base Structure',
+        title: 'Create base project structure',
         description: 'Create base structure for new project'
     },
     {
