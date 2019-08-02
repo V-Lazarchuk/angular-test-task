@@ -1,11 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './components';
+
+import { DashboardComponent, TasksFormComponent } from './components';
 
 const routes: Routes = [
     {
         path: '',
-        component: DashboardComponent
+        component: DashboardComponent,
+        children: [
+            {
+                path: ':mode',
+                component: TasksFormComponent
+            }
+        ]
     }
 ];
 

@@ -1,22 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { TaskManagementRoutingModule } from './task-management-routing.module';
-import { DashboardComponent } from './components';
-import { TasksColumnComponent } from './components/tasks-column/tasks-column.component';
-import { TaskComponent } from './components/task/task.component';
-import { TasksFormComponent } from './components/tasks-form/tasks-form.component';
+import { DashboardComponent, TaskComponent, TasksFormComponent } from './components';
 
 @NgModule({
     declarations: [
         DashboardComponent,
-        TasksColumnComponent,
         TaskComponent,
         TasksFormComponent
     ],
     imports: [
         CommonModule,
-        TaskManagementRoutingModule
+        TaskManagementRoutingModule,
+        DragDropModule
     ]
 })
 export class TaskManagementModule {

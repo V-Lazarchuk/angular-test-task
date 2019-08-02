@@ -1,1 +1,19 @@
-<p>dashboard works!</p>
+<header class="header">Tasks management</header>
+<section class="content"
+         cdkDropListGroup>
+    <div class="category"
+         *ngFor="let category of taskItems | keyvalue : keyValueSort">
+        <h4 class="category__title">
+            {{category.key}}
+        </h4>
+        <div cdkDropList
+             [cdkDropListData]="taskItems[category.key]"
+             (cdkDropListDropped)="drop($event)"
+             class="tasks">
+            <app-task *ngFor="let task of category.value"
+                      cdkDrag
+                      [task]="task">
+            </app-task>
+        </div>
+    </div>
+</section>
