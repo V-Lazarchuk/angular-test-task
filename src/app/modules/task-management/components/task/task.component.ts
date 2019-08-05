@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { Task } from '../../models';
 
 @Component({
@@ -8,4 +9,10 @@ import { Task } from '../../models';
 })
 export class TaskComponent {
     @Input() task: Task;
+    @Output() delete: EventEmitter<number> = new EventEmitter();
+
+    deleteTask(event: MouseEvent): void {
+        event.stopPropagation();
+        this.delete.emit(this.task.id);
+    }
 }

@@ -6,7 +6,7 @@
 }
 
 .content {
-    height: calc(100vh - 60px);
+    min-height: calc(100vh - 85px);
     display: flex;
 }
 
@@ -17,6 +17,8 @@
     padding: 7px;
     flex: 1 0 280px;
     max-width: 300px;
+    display: flex;
+    flex-direction: column;
 
     &__title {
         background-color: gold;
@@ -25,12 +27,24 @@
         font-size: 18px;
         padding: 6px;
         border-radius: 4px;
+        cursor: pointer;
     }
 
     &.transparent {
         opacity: 0.7;
     }
 
+    &__remove {
+        width: 60px;
+        padding: 6px;
+        border: 2px solid red;
+        color: red;
+        font-size: 18px;
+        text-align: center;
+        border-radius: 5px;
+        margin: auto auto 0;
+        cursor: pointer;
+    }
 }
 
 .tasks {
@@ -46,6 +60,7 @@
         border: 2px solid green;
         cursor: pointer;
         border-radius: 6px;
+        margin-bottom: 16px;
     }
 }
 

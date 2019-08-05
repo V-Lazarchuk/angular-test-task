@@ -4,7 +4,7 @@
         <input type="text"
                formControlName="title"
                placeholder="Category">
-        <p class="form-error-hint">
+        <div class="form-error-hint">
             <ng-container *ngIf="createForm.get('title').errors">
                 <span *ngIf="createForm.get('title').errors['required'] && createForm.get('title').touched">
                     This field is required
@@ -13,7 +13,7 @@
                     This field should contain minimum 3 chars
                 </span>
             </ng-container>
-        </p>
+        </div>
     </div>
     <div class="form-buttons">
         <button class="form-button cancel"
@@ -23,8 +23,7 @@
         </button>
         <button class="form-button success"
                 type="submit"
-                [disabled]="createForm.invalid"
-                (click)="createCategory()">
+                [disabled]="createForm.invalid">
             Create
         </button>
     </div>

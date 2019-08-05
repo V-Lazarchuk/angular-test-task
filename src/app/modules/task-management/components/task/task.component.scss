@@ -5,6 +5,22 @@
     background-color: azure;
     user-select: none;
     cursor: pointer;
+    position: relative;
+
+    &:hover {
+        .task__delete {
+            display: block;
+        }
+    }
+
+    &__delete {
+        position: absolute;
+        right: 10px;
+        top: 7px;
+        font-size: 18px;
+        color: red;
+        display: none;
+    }
 
     &__title {
         font-size: 18px;

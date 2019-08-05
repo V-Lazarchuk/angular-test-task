@@ -9,7 +9,7 @@ const routes: Routes = [
         component: DashboardComponent,
         children: [
             {
-                path: ':mode/:categoryId/:taskId',
+                path: ':mode/:categoryId',
                 component: TasksFormComponent
             }
         ]

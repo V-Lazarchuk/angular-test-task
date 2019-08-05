@@ -1,1 +1,59 @@
-<p>tasks-form works!</p>
+<div class="form">
+    <div class="form__wrapper">
+        <i class="fas fa-times form__close"
+           (click)="goBack()"></i>
+        <h4 class="form__heading">{{mode | titlecase}} Task</h4>
+        <form [formGroup]="taskForm"
+              (ngSubmit)="submitForm()">
+            <div class="form__input-row">
+                <div class="form__input-label">
+                    <label>Title</label>
+                </div>
+                <div class="form__input-field">
+                    <input type="text"
+                           formControlName="title">
+                    <div class="form__error-hint">
+                        <ng-container *ngIf="taskForm.get('title').errors">
+                        <span *ngIf="taskForm.get('title').errors['required'] && taskForm.get('title').touched">
+                            This field is required
+                        </span>
+                            <span *ngIf="taskForm.get('title').errors['minlength'] && taskForm.get('title').touched">
+                            This field should contain minimum 3 chars
+                        </span>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+            <div class="form__input-row">
+                <div class="form__input-label">
+                    <label>Description</label>
+                </div>
+                <div class="form__input-field">
+                    <textarea formControlName="description"></textarea>
+                    <div class="form__error-hint">
+                        <ng-container *ngIf="taskForm.get('description').errors">
+                        <span *ngIf="taskForm.get('description').errors['required'] && taskForm.get('description').touched">
+                            This field is required
+                        </span>
+                            <span *ngIf="taskForm.get('description').errors['minlength'] && taskForm.get('description').touched">
+                            This field should contain minimum 3 chars
+                        </span>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+            <div class="form__input-row">
+                <button type="button"
+                        class="cancel"
+                        (click)="goBack()">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button type="submit"
+                        class="success"
+                        [disabled]="taskForm.invalid">
+                    <i class="fas fa-check"></i> Submit
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

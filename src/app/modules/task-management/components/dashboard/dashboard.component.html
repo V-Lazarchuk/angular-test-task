@@ -1,22 +1,40 @@
 <header class="header">Tasks management</header>
+
 <section class="content"
-         cdkDropListGroup>
+         cdkDropList
+         [cdkDropListData]="categories"
+         [cdkDropListOrientation]="'horizontal'"
+         (cdkDropListDropped)="dropCategory($event)">
     <div class="category"
-         *ngFor="let category of taskItems | keyvalue : keyValueSort">
+         *ngFor="let category of categories"
+         cdkDropListGroup
+         cdkDrag
+         cdkDragLockAxis="x"
+    >
         <h4 class="category__title">
-            {{getCategoryName(category.key)}}
+            {{category.title}}
         </h4>
         <div cdkDropList
-             [cdkDropListData]="taskItems[category.key]"
-             (cdkDropListDropped)="drop($event)"
+             id="{{category.id}}"
+             [cdkDropListConnectedTo]="getConnectionList()"
+             [cdkDropListData]="taskItems[category.id]"
+             (cdkDropListDropped)="dropTask($event)"
              class="tasks">
-            <app-task *ngFor="let task of category.value"
+            <app-task *ngFor="let task of taskItems[category.id]"
                       cdkDrag
-                      [task]="task">
+                      [routerLink]="['/edit', category.id]"
+                      [task]="task"
+                      (click)="setActiveTask(task)"
+            (delete)="deleteTask(category.id, task.id)">
             </app-task>
-            <button class="tasks__create">
+            <button class="tasks__create"
+                    [routerLink]="['/add', category.id]">
                 <i class="fas fa-plus"></i>
             </button>
+        </div>
+        <div class="category__remove"
+        (click)="removeCategory(category.id)">
+            <i class="fas fa-times"></i>
         </div>
     </div>
     <div class="category"
@@ -29,9 +47,11 @@
 
         <ng-template #plusButton>
             <button class="addButton"
-            (click)="showCreateCategoryForm = true">
+                    (click)="showCreateCategoryForm = true">
                 Add category
             </button>
         </ng-template>
     </div>
 </section>
+
+<router-outlet></router-outlet>
