@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 import { TasksService } from '../../services/tasks.service';
-import { Task } from '../../models';
+import { Category, Task } from '../../models';
 
 @Component({
     selector: 'app-dashboard',
@@ -10,17 +10,19 @@ import { Task } from '../../models';
     styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-    public taskItems: { [name: string]: Task[] } = {};
+    public taskItems: { [name: number]: Task[] } = {};
     public showCreateCategoryForm: boolean = false;
+
+    private categories: Category[];
 
     constructor(private tasksService: TasksService) {
     }
 
     public ngOnInit() {
-        const categories = this.tasksService.getAllCategories();
+        this.categories = this.tasksService.getAllCategories();
         const tasks = this.tasksService.getAllTasks();
-        categories.forEach(category => {
-            this.taskItems[category.title] = tasks.filter(task => task.categoryId === category.id);
+        this.categories.forEach(category => {
+            this.taskItems[category.id] = tasks.filter(task => task.categoryId === category.id);
         });
     }
 
@@ -36,8 +38,17 @@ export class DashboardComponent implements OnInit {
     }
 
     public addNewCategory(title: string): void {
+        const id = Math.max(...this.categories.map(item => item.id)) + 1;
         this.showCreateCategoryForm = false;
-        this.taskItems[title] = [];
+        this.categories.push({
+            title,
+            id
+        });
+        this.taskItems[id] = [];
+    }
+
+    private getCategoryName(id: string): string {
+        return this.categories.find(item => item.id === Number(id)).title;
     }
 
     /**

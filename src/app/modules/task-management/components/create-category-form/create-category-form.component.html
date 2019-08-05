@@ -23,6 +23,7 @@
         </button>
         <button class="form-button success"
                 type="submit"
+                [disabled]="createForm.invalid"
                 (click)="createCategory()">
             Create
         </button>

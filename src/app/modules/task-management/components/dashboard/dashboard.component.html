@@ -4,7 +4,7 @@
     <div class="category"
          *ngFor="let category of taskItems | keyvalue : keyValueSort">
         <h4 class="category__title">
-            {{category.key}}
+            {{getCategoryName(category.key)}}
         </h4>
         <div cdkDropList
              [cdkDropListData]="taskItems[category.key]"
@@ -14,6 +14,9 @@
                       cdkDrag
                       [task]="task">
             </app-task>
+            <button class="tasks__create">
+                <i class="fas fa-plus"></i>
+            </button>
         </div>
     </div>
     <div class="category"

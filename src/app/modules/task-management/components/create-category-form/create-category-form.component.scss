@@ -14,6 +14,7 @@
 
     &-buttons {
         display: flex;
+        margin: 0 -10px;
     }
 
     &-button {
@@ -23,13 +24,22 @@
         padding: 4px 8px;
         text-align: center;
         border-radius: 4px;
+        cursor: pointer;
+        margin: 0 10px;
 
         &.cancel {
             background-color: red;
+            border-color: red;
         }
 
         &.success {
             background-color: green;
+            border-color: green;
+        }
+
+        &[disabled] {
+            cursor: not-allowed;
+            opacity: 0.5;
         }
     }
 }

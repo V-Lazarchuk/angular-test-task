@@ -19,7 +19,7 @@
     max-width: 300px;
 
     &__title {
-        background-color: lightcoral;
+        background-color: gold;
         margin: 0 0 12px;
         text-align: center;
         font-size: 18px;
@@ -35,6 +35,18 @@
 
 .tasks {
     height: 100%;
+
+    &__create {
+        display: block;
+        width: 100%;
+        text-align: center;
+        background-color: white;
+        color: green;
+        padding: 7px;
+        border: 2px solid green;
+        cursor: pointer;
+        border-radius: 6px;
+    }
 }
 
 .addButton {
